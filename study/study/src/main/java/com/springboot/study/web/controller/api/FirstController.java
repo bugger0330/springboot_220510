@@ -56,14 +56,14 @@ public class FirstController {
 	 */
 	
 	
-//	@GetMapping("/add2")
-//	public int add2(@RequestParam("v") List<Integer> a) {
-//		for(int i = 0; i < a.size(); i++) {
-//			int sum = 0;
-//			sum += a.get(i);
-//		}
-//		return sum;
-//	}
+	@GetMapping("/add2")
+	public int add2(@RequestParam("v") List<Integer> a) {
+		int sum = 0;
+		for(int i = 0; i < a.size(); i++) {
+			sum += a.get(i);
+		}
+		return sum;
+	}
 	
 	@GetMapping("/add3")
 	public int add3(@RequestParam("v") List<Integer> a) {
