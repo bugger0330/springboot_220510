@@ -10,4 +10,9 @@ public class PageController {
 	public String index() {
 		return "index";
 	}
+	
+	@GetMapping("/board")
+	public String boardList() {
+		return "board/board-list";
+	}
 }
