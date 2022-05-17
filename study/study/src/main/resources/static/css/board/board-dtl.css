@@ -14,28 +14,18 @@
 	align-items: center;
 	width: 100%;
 }
-.board-list-page{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100px;
-}
-.board-list-page div{
-	cursor: pointer;
-}
 
 .board-list-table{
 	border: 1px solid black;
 	border-collapse: collapse;
 	
 }
+th{
+	border: 1px solid black;
+	width: 100px;
+}
+
 td{
 	border: 1px solid black;
-	width: 200px;
-}
-.board-items{
-	cursor: pointer;
-}
-.board-items:hover{
-	background-color: gray;
+	width: 400px;
 }
