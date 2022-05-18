@@ -26,4 +26,8 @@ public class PageController {
 	public String boardDtl(@PathVariable int boardCode) {
 		return "board/board-dtl";
 	}
+	@GetMapping("/board/create")
+	public String boardInsert() {
+		return "board/board-insert";
+	}
 }

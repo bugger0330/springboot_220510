@@ -23,4 +23,6 @@ public class BoardResponseDto {
 	private String username;
 	
 	private int boardCount;
+	
+	private long boardCountAll;
 }
