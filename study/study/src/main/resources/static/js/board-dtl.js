@@ -3,16 +3,21 @@
  */
  
 const boardListTable = document.querySelector('.board-list-table');
+const updateBtn = document.querySelector('.update-btn');
+const deleteBtn = document.querySelector('.delete-btn');
 
 let path = window.location.pathname;
+let boardCode = path.substring(path.lastIndexOf("/") + 1);
 
 load();
 
 function load() {
-	let boardCode = path.substring(path.lastIndexOf("/") + 1);
+	
 	$.ajax({
 		type: "get",
-		url: `/board/${boardCode}`,
+		url: `/api/board/${boardCode}`,
+		data: JSON.stringify(),
+		contentType: "application/json",
 		dataType: "text",
 		success: function(data){
 			let boardObj = JSON.parse(data);
@@ -44,4 +49,52 @@ function getBoardDtl(data){
 	</tr>
 	`;
 }
+
+updateBtn.onclick = () => {
+	location.href = "/board/" + boardCode;
+}
+
+deleteBtn.onclick = () => {
+	let flag =confirm("정말로 삭제하시겠습니까?");
+	if(flag == true){
+		let boardCode = path.substring(path.lastIndexOf("/") + 1);
+		let url = `/api/board/${boardCode}`;
+		
+		let option = {
+			method: "DELETE"
+		};
+		
+		fetch(url, option)
+		.then(response => {
+			console.log(response);
+			if(response.ok){
+				return response.json();
+			}else{
+				throw new Error("정상적인 데이터를 응답받지 못했습니다.");
+			}
+		})
+		.then(data => {
+			alert("삭제되었습니다");
+			location.replace("/board/list");
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -4,8 +4,8 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>게시글 작성</title>
-    <link rel="stylesheet" href="/css/board/board-insert.css">
+    <title>게시글 수정</title>
+    <link rel="stylesheet" href="/css/board/board-update.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                 	<th>작성자</th>
-                	<td><input type="text" class="input-items"></td>
+                	<td><input type="text" class="input-items" readonly="readonly"></td>
                 </tr>
                 <tr>
                 	<th>내용</th>
@@ -29,6 +29,6 @@
         </div>
         
     </div>
-    <script src="/js/board-insert.js"></script>
+    <script src="/js/board-update.js"></script>
 </body>
 </html>

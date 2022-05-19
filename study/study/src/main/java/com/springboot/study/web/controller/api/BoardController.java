@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.study.service.board.BoardService;
@@ -25,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api") // 각각의 매핑 주소 앞에 붙여준다
 public class BoardController {
 	
 	private final BoardService boardService;
@@ -53,7 +55,7 @@ public class BoardController {
 	}
 	
 	@PutMapping("/board/{boardCode}")
-	public ResponseEntity<?> updateBoard(@PathVariable int boardCode, @Valid BoardUpdateRequestDto boardUpdateRequestDto, BindingResult bindingResult) throws Exception {
+	public ResponseEntity<?> updateBoard(@PathVariable int boardCode, @Valid @RequestBody BoardUpdateRequestDto boardUpdateRequestDto, BindingResult bindingResult) throws Exception {
 		int result = boardService.updateBoard(boardCode, boardUpdateRequestDto);
 		
 		

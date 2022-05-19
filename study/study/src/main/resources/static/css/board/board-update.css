@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*{
+	box-sizing: border-box;
+}
+
 #container{
 	display: flex;
 	flex-direction:column;
@@ -29,9 +33,29 @@ td{
 	border: 1px solid black;
 	width: 400px;
 }
-.option-buttons{
-	display: flex;
-	justify-content: flex-end;
-	width: 500px;
-	margin-top: 10px; 
+.textarea-item{
+	border: none;
+	padding: 10px;
+	resize: none;
+	width:100%;
+	height:500px;
 }
+
+.input-items{
+	border: none;
+	padding: 10px;
+	outline: none;
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+

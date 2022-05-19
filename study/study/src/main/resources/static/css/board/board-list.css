@@ -14,6 +14,17 @@
 	align-items: center;
 	width: 100%;
 }
+.board-page-buttons{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 130px;
+}
+
+.pre-next-btn{
+	cursor: pointer;
+}
+
 .board-list-page{
 	display: flex;
 	justify-content: space-between;

@@ -43,10 +43,34 @@ spring:
     url: jdbc:mariadb://127.0.0.1:8001/springboot_kangmin?userUnicode=true&serverTimezone=Asia/seoul&allowMultiQueries=true
     username: root
     password: toor
+#시큐리티
+  security:
+    user:
+      name: test
+      password: 1234
+
     
 mybatis:
   mapper-locations:
   - /mappers/*.xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

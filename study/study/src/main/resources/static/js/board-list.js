@@ -1,11 +1,20 @@
+/**
+ * 
+ */
+ 
 const boardListTable = document.querySelector('.board-list-table');
 const boardListPage = document.querySelector('.board-list-page');
+
+
+
+
 let nowPage = 1;
 
 load(nowPage);
 
-/*function load(page){
-	let url = "/board/list?page=" + page; //  `/board/list?page=${page}`;
+function load(page) {
+	let url = `/api/board/list?page=${page}`;
+	
 	fetch(url)
 	.then(response => {
 		if(response.ok){
@@ -16,18 +25,11 @@ load(nowPage);
 	})
 	.then(result => {
 		getBoardList(result.data);
-			create_PageNumber(result.data[0].boardCountAll);
-			getBoardItems();
+		createPageNumber(result.data[0].boardCountAll);
+		getBoardItems();
 	})
 	.catch(error => {console.log(error);});
-	
-}*/
-
-
-
-
-
-function load(page) {
+	/*
 	$.ajax({
 		type: "get",
 		url: "/board/list",
@@ -38,21 +40,23 @@ function load(page) {
 		success: function(data){
 			let boardList = JSON.parse(data);
 			getBoardList(boardList.data);
-			create_PageNumber(boardList.data[0].boardCountAll);
+			createPageNumber(boardList.data[0].boardCountAll);
 			getBoardItems();
 		},
 		error: function(){
 			alert("비동기 처리 오류");
 		}
-	});
+	});*/
 }
-//게시글 페이징 번호
-function create_PageNumber(data){
-	const boardListPage = document.querySelector(".board-list-page");
-	const totalBoardCount = data;
-	const totalPageCount = data % 5 == 0 ? data / 5 : (data / 5)+1;
+
+function createPageNumber(data) {
+	const boardListPage = document.querySelector('.board-list-page');
+	const preNextBtn = document.querySelectorAll('.pre-next-btn');	
 	
-	const startIndex = nowPage % 5 == 0 ? nowPage - 4 : nowPage - (nowPage % 5) +1;
+	const totalBoardCount = data;
+	const totalPageCount = data % 5 == 0 ? data / 5 : (data / 5) + 1;
+	
+	const startIndex = nowPage % 5 == 0 ? nowPage - 4 : nowPage - (nowPage % 5) + 1;
 	const endIndex = startIndex + 4 <= totalPageCount ? startIndex + 4 : totalPageCount;
 	
 	let pageStr = ``;
@@ -61,9 +65,20 @@ function create_PageNumber(data){
 		pageStr += `<div>${i}</div>`;
 	}
 	
-	pageStr += `<div>6</div>`;
-	
 	boardListPage.innerHTML = pageStr;
+	
+	preNextBtn[0].onclick = () => {
+		nowPage = startIndex != 1 ? startIndex - 1 : 1;
+		load(nowPage);
+	}
+	
+	preNextBtn[1].onclick = () => {
+		nowPage = endIndex != totalPageCount ? endIndex + 1 : totalPageCount;
+		load(nowPage);
+	}
+	
+	
+	
 	
 	const pageButton = boardListPage.querySelectorAll('div');
 	for(let i = 0; i < pageButton.length; i++){
@@ -106,7 +121,10 @@ function getBoardItems(){
 	const boardItems = document.querySelectorAll('.board-items');
 	for(let i = 0; i < boardItems.length; i++){
 		boardItems[i].onclick = () => {
-			location.href = "/board/dtl/" + boardItems[i].querySelectorAll('td')[0].textContent;
+			location.href = "/board-info/" + boardItems[i].querySelectorAll('td')[0].textContent;
 		}
 	}
 }
+
+
+
