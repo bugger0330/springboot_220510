@@ -14,10 +14,12 @@
 
 
 -- springboot_kangmin 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `springboot_kangmin`;
 CREATE DATABASE IF NOT EXISTS `springboot_kangmin` /*!40100 DEFAULT CHARACTER SET utf8mb3 */;
 USE `springboot_kangmin`;
 
 -- 테이블 springboot_kangmin.board_mst 구조 내보내기
+DROP TABLE IF EXISTS `board_mst`;
 CREATE TABLE IF NOT EXISTS `board_mst` (
   `board_code` int(11) NOT NULL AUTO_INCREMENT,
   `board_title` varchar(50) NOT NULL,
@@ -29,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `board_mst` (
   PRIMARY KEY (`board_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 springboot_kangmin.board_mst:~249 rows (대략적) 내보내기
+-- 테이블 데이터 springboot_kangmin.board_mst:~242 rows (대략적) 내보내기
 DELETE FROM `board_mst`;
 /*!40000 ALTER TABLE `board_mst` DISABLE KEYS */;
 INSERT INTO `board_mst` (`board_code`, `board_title`, `board_content`, `board_writer`, `board_count`, `create_date`, `update_date`) VALUES
@@ -278,6 +280,7 @@ INSERT INTO `board_mst` (`board_code`, `board_title`, `board_content`, `board_wr
 /*!40000 ALTER TABLE `board_mst` ENABLE KEYS */;
 
 -- 테이블 springboot_kangmin.user_mst 구조 내보내기
+DROP TABLE IF EXISTS `user_mst`;
 CREATE TABLE IF NOT EXISTS `user_mst` (
   `user_code` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
@@ -291,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `user_mst` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 springboot_kangmin.user_mst:~1 rows (대략적) 내보내기
+-- 테이블 데이터 springboot_kangmin.user_mst:~2 rows (대략적) 내보내기
 DELETE FROM `user_mst`;
 /*!40000 ALTER TABLE `user_mst` DISABLE KEYS */;
 INSERT INTO `user_mst` (`user_code`, `email`, `name`, `username`, `password`, `roles`, `create_date`, `update_date`) VALUES
