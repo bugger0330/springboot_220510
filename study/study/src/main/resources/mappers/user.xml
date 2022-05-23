@@ -21,5 +21,11 @@
   	<select id="findUserByUsername" parameterType="String" resultType="com.springboot.study.domain.user.User">
   		select * from user_mst where username = #{username};
   	</select>
+
+  	<select id="findOAuth2UserByOAuth2Username" parameterType="String" resultType="com.springboot.study.domain.user.User">
+  		select * from user_mst where oauth2_username = #{oAuth2Username};
+  	</select>
+  
+  
   
   </mapper>
