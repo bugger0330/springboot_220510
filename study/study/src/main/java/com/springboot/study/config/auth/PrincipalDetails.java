@@ -17,9 +17,14 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	private static final long serialVersionUID = 1L;
 	private User user;
+	private Map<String, Object> attributes;
 	
 	public PrincipalDetails(User user) {
 		this.user = user;
+	}
+	public PrincipalDetails(User user, Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes =attributes;
 	}
 	
 	@Override
@@ -92,13 +97,13 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 	@Override
 	public Map<String, Object> getAttributes() {
 		// TODO Auto-generated method stub
-		return null;
+		return attributes;
 	}
 
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return (String)attributes.get("name");
 	}
 
 }

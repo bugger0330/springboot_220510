@@ -5,14 +5,16 @@
   
   <mapper namespace="com.springboot.study.domain.user.UserRepository">
   	
-	<insert id="insertUser" parameterType="com.springboot.study.domain.user.User">
+	<insert id="insertUser" parameterType="com.springboot.study.domain.user.User" useGeneratedKeys="true"  keyProperty="user_code">
 		insert into user_mst values(
 			0,
 			#{email},
 			#{name},
 			#{username},
+			#{oAuth2_username},
 			#{password},
 			#{roles},
+			#{provider},
 			now(),
 			now()
 		);
@@ -26,6 +28,9 @@
   		select * from user_mst where oauth2_username = #{oAuth2Username};
   	</select>
   
-  
+  	<update id="imgUpdate" parameterType="String">
+ 		update set user_dtl
+ 			profile_img_url = #{file1};
+  	</update>
   
   </mapper>

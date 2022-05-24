@@ -8,13 +8,18 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.study.config.auth.PrincipalDetails;
 import com.springboot.study.domain.user.User;
 import com.springboot.study.domain.user.UserRepository;
+import com.springboot.study.service.board.ProfileImg;
 import com.springboot.study.web.dto.CMRespDto;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +33,7 @@ public class AuthController {
 
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	private ProfileImg profileImg;
 	
 	
 	@PostMapping("/signup")
@@ -48,6 +54,22 @@ public class AuthController {
 		return new ResponseEntity<>(new CMRespDto<User>(1, "회원가입완료", user), HttpStatus.OK);
 		
 	}
+	
+	
+	
+	@PutMapping("/user/account/profile/img")
+	public ResponseEntity<?> updateProfileImg(@RequestPart MultipartFile file){
+		System.out.println("컨트롤러 파일 : " + file);
+		String file1 = file.getOriginalFilename();
+		System.out.println(file.getOriginalFilename());
+		boolean result = profileImg.changeImg(file1);
+		System.out.println(result);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
+	
 	@GetMapping("/authentication")
 	public ResponseEntity<?> getAuthentication(@AuthenticationPrincipal PrincipalDetails principalDetails){
 		System.out.println(principalDetails.getUser().getUser_code());

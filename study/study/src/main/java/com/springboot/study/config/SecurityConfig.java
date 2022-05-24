@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//WebSecurityC
 		http.authorizeRequests() // 인증 관련 요청
 			.antMatchers("/api/board/**", "/", "/board/list") //1. 이런 요청이 들어오면 무조건
 			.authenticated() // 2. 인증이 필요하다(권한은 상관없지만 로그인을 해라)
-			.antMatchers("/api/v1/user/**") //해당 ROLE을 가지고 있는 아이디만 접속 시켜라
+			.antMatchers("/api/v1/user/**", "/user/account/**") //해당 ROLE을 가지고 있는 아이디만 접속 시켜라
 			.access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
 			.antMatchers("/api/v1/manager/**")
 			.access("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
@@ -54,6 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//WebSecurityC
 			.oauth2Login()
 			.loginPage("/auth/signin")
 			.userInfoEndpoint()
+			/*0. .userInfoEndpoint() 가 실행되면
+			 * 1. 코드를 받는다(google, naver, kakao 등 로그인 요청을 했을때 부여되는 코드번호)
+			 * 2. access 토큰을 발급받는다(JWT)
+			 * 3. 사용자(스코프) 정보에 접근할 수 있는 권한이 생긴다.
+			 * 4. 해당 경로를 시큐리티에서 활용하면 된다.
+			 */
 			.userService(principalOauth2UserService)
 			.and()
 			.defaultSuccessUrl("/");
