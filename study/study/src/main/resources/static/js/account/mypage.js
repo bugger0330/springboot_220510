@@ -3,15 +3,7 @@ const usernameText = document.querySelector(".username-text");
 const textInput = document.querySelectorAll(".text-input");
 const fileInput = document.querySelector(".file-input");
 
-getAuthenticationReq()
-	.then(result => {
-		let principal = result.data.user;
-		usernameText.textContent = principal.username;
-		textInput[0].value = principal.username;
-		textInput[1].value = principal.email;
-		textInput[2].value = principal.name;
-		
-	});
+
 
 async function imgSubmit(){
 	let formData = new FormData(document.querySelector("form"));
@@ -45,4 +37,27 @@ fileInput.onchange = () => {
 	reader.readAsDataURL(fileInput.files[0]);
 }
 
-
+getAuthenticationReq()
+	.then(result => {
+		let principal = result.data.user;
+		usernameText.textContent = principal.username;
+		textInput[0].value = principal.username;
+		textInput[1].value = principal.email;
+		textInput[2].value = principal.name;
+		profileImgUrl.src = "/image/profile/" + principal.profile_img_url;
+	})
+	.catch(error => {
+		console.log(error);
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -24,6 +24,8 @@ public class User {
 	private String roles; // ROLE_USER, ROLE_MANAGER, ROLE_ADMIN 등이 이렇게 들어간다
 	//ROLE_ 를 붙이면 무조건 시큐리티 형식이다
 	private String provider;
+	private String profile_img_url;
+	
 	
 	public List<String> getRoleList(){
 		
@@ -33,4 +35,8 @@ public class User {
 		}//***this.roles.split(",")은 쉼표를 기준으로 배열을 만들어 준다.Arrays.asList는 배열=>리스트로 변환해준다
 		return new ArrayList<String>();
 	}
+	
+	
+	
+	
 }

@@ -21,16 +21,23 @@
 	</insert>
   
   	<select id="findUserByUsername" parameterType="String" resultType="com.springboot.study.domain.user.User">
-  		select * from user_mst where username = #{username};
+  		select um.*, ud.profile_img_url 
+  		from user_mst um
+  		left outer join user_dtl ud on(ud.user_code = um.user_code)
+  		where username = #{username};
   	</select>
 
   	<select id="findOAuth2UserByOAuth2Username" parameterType="String" resultType="com.springboot.study.domain.user.User">
-  		select * from user_mst where oauth2_username = #{oAuth2Username};
+  		select um.*, ud.profile_img_url 
+  		from user_mst um
+  		left outer join user_dtl ud on(ud.user_code = um.user_code)
+  		where oauth2_username = #{oAuth2Username};
   	</select>
   
-  	<update id="imgUpdate" parameterType="String">
- 		update set user_dtl
- 			profile_img_url = #{file1};
+  	<update id="updateProfileImg" parameterType="com.springboot.study.domain.user.User">
+ 		update user_dtl set
+ 			profile_img_url = #{profile_img_url}
+ 		where user_code = #{user_code};
   	</update>
   
   </mapper>

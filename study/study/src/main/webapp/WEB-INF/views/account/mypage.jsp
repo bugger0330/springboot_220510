@@ -12,7 +12,7 @@
 		<form action="" enctype="multipart/form-data">
 			<div class="user-info">
 				<div class="profile-img">
-					<img class="profile-img-url" src="https://lh3.googleusercontent.com/a/AATXAJx1xQ8D80XbA-BmJ7dnmsE6Q82Oi_3JYS9CsWeb=s96-c">
+					<img class="profile-img-url">
 				</div>
 				<div class="username-text">username</div><br>
 				<input type="file" name="file" class="file-input">
